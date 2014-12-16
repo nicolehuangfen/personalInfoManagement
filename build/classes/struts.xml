@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<package name="login" namespace="/a" extends="struts-default">
+		<action name="login" class="com.cn.hf.action.LoginAction">
+			<result name="success">/left.jsp</result>
+			<result name="input">/LogAndReg/login.jsp</result>
+		</action>
+		<action name="register" class="com.cn.hf.action.RegisterAction">
+			<result name="success">/LogAndReg/RegSuc.jsp</result>
+			<result name="input">/LogAndReg/register.jsp</result>
+		</action>
+	</package>
+
+	<package name="personal" namespace="/personal" extends="struts-default">
+		<action name="update" class="com.cn.hf.personal.action.UpdateAction"
+			method="execute">
+			<result name="success">/personal/query.jsp</result>
+			<result name="input">/personal/updateInfo.jsp</result>
+		</action>
+		<action name="updatePsw" class="com.cn.hf.personal.action.UpdatePasswordAction">
+			<result name="success">/personal/updatePswSuc.jsp</result>
+			<result name="input">/personal/updatePsw.jsp</result>
+		</action>
+	</package>
+
+	<package name="contact" namespace="/contact" extends="struts-default">
+		<action name="add" class="com.cn.hf.contact.action.AddAction">
+			<result name="success">/contact/query.jsp</result>
+			<result name="input">/contact/add.jsp</result>
+		</action>
+		<action name="query" class="com.cn.hf.contact.action.QueryAction">
+			<result name="success">/contact/query.jsp</result>
+			<result name="input">/contact/queryFail.jsp</result>
+		</action>
+		<action name="inputFriendName" class="com.cn.hf.contact.action.InputFriendNameAction">
+			<result name="success">/contact/update.jsp</result>
+			<result name="input">/contact/InputNameFail.jsp</result>
+		</action>
+		<action name="update" class="com.cn.hf.contact.action.UpdateAction">
+			<result name="success">/contact/query.jsp</result>
+			<result name="input">/contact/update.jsp</result>
+		</action>
+		<action name="inputFriendName1" class="com.cn.hf.contact.action.InputFriendNameAction">
+			<result name="success">/contact/delete.jsp</result>
+			<result name="input">/contact/InputNameFail.jsp</result>
+		</action>
+		<action name="delete" class="com.cn.hf.contact.action.DeleteAction">
+			<result name="success">/contact/query.jsp</result>
+			<result name="input">/contact/delete.jsp</result>
+		</action>
+	</package>
+
+	<package name="arrangement" namespace="/arrangement" extends="struts-default">
+		<action name="add" class="com.cn.hf.arrangement.action.AddAction">
+			<result name="success">/arrangement/query.jsp</result>
+			<result name="input">/arrangement/add.jsp</result>
+		</action>
+		<action name="inputDate" class="com.cn.hf.arrangement.action.InputDateAction">
+			<result name="success">/arrangement/update.jsp</result>
+			<result name="input">/arrangement/inputFail.jsp</result>
+		</action>
+		<action name="update" class="com.cn.hf.arrangement.action.UpdateAction">
+			<result name="success">/arrangement/query.jsp</result>
+			<result name="input">/arrangement/update.jsp</result>
+		</action>
+		<action name="inputDate1" class="com.cn.hf.arrangement.action.InputDateAction">
+			<result name="success">/arrangement/delete.jsp</result>
+			<result name="input">/arrangement/inputFail.jsp</result>
+		</action>
+		<action name="delete" class="com.cn.hf.arrangement.action.DeleteAction">
+			<result name="success">/arrangement/query.jsp</result>
+			<result name="input">/arrangement/delete.jsp</result>
+		</action>
+	</package>
+	<package name="file" namespace="/file" extends="struts-default">
+		<action name="up" class="com.cn.hf.file.action.UpAction">
+			<interceptor-ref name="fileUpload">
+				<param name="maximumSize">10000000</param>
+				<param name="allowedTypes">image/gif,image/png,image/jpeg,image/jpg,image/pjpeg</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<param name="savePath">./save</param>
+			<result name="success">/file/success.jsp</result>
+			<result name="input">/file/fail.jsp</result>
+		</action>
+		<action name="inputTitle" class="com.cn.hf.file.action.InputTitleAction">
+			<result name="success">/file/delete.jsp</result>
+			<result name="input">/file/fail.jsp</result>
+		</action>
+		<action name="delete" class="com.cn.hf.file.action.DeleteAction">
+			<result name="success">/file/query.jsp</result>
+			<result name="input">/file/delete.jsp</result>
+		</action>
+		<action name="fileDownload" class="com.cn.hf.file.action.DownAction">
+<!-- 			<param name="path">/save/1.jpg</param> -->
+			<result name="success" type="stream">
+				<param name="contentType">image/jpg</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="hlm.jpg"</param>
+				<param name="buffersize">40960</param>
+			</result>
+			<result name="input">/file/fail.jsp</result>
+		</action>
+	</package>
+</struts>
